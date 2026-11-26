@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "Pelican Surfer — GBike World Tour",
+  "version": "1.0.0",
+  "description": "3-lane 3D Subway Surfers-style runner featuring a flying pelican on a 4-color Google GBike across 6 global Google campuses.",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_title": "Play Pelican Surfer",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  }
+}

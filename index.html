@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Pelican Surfer — GBike World Tour</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <span class="g-dots" aria-hidden="true">
+          <i class="dot blue"></i><i class="dot red"></i><i class="dot yellow"></i><i class="dot green"></i>
+        </span>
+        <div>
+          <h1>Pelican Surfer</h1>
+          <p class="subtitle">GBike 3-Lane World Tour</p>
+        </div>
+      </div>
+      <div class="topbar-actions">
+        <button id="btn-mode" class="icon-btn" type="button" title="Toggle Speed Mode: Googler (Accelerating) vs Noogler (Chill)" aria-label="Toggle speed mode">
+          🚀 Googler
+        </button>
+        <button id="btn-music" class="icon-btn" type="button" title="Toggle Synth Music (N)" aria-label="Toggle music">
+          🎵 Music
+        </button>
+        <button id="btn-mute" class="icon-btn" type="button" title="Mute / Unmute (M)" aria-label="Toggle sound">
+          🔊 Sound
+        </button>
+        <button id="btn-pause" class="icon-btn" type="button" title="Pause (P / Esc)" aria-label="Pause game">
+          ⏸ Pause
+        </button>
+      </div>
+    </header>
+
+    <main class="stage-shell" id="stage-shell">
+      <div class="stage-wrap">
+        <canvas id="game-canvas" width="960" height="600" aria-label="Pelican Surfer 3D runner game canvas"></canvas>
+
+        <!-- HUD -->
+        <div class="hud" aria-live="off">
+          <div class="hud-left">
+            <div class="pill campus-pill" id="hud-campus">Mountain View · GBuses</div>
+            <div class="hud-badges">
+              <div class="flap-pill" id="flap-wrap" hidden aria-label="Wing flaps remaining">
+                <span class="flap-label">WING FLAPS</span>
+                <span class="flap-pips" id="flap-pips"></span>
+              </div>
+              <div class="combo-pill" id="combo-wrap" hidden>🔥 ×2 COMBO</div>
+              <div class="respawn-pill" id="respawn-wrap" hidden>🛡 ×0 · G 0/3</div>
+              <button class="hover-pill" id="btn-hover" type="button" hidden title="Activate Hover-GBike Shield (Shift / H · 10 G Coins)">
+                ⚡ Hover (Shift · 10G)
+              </button>
+            </div>
+            <div class="sparkle-bar-wrap" id="sparkle-wrap" hidden>
+              <span class="sparkle-label">✦ GEMINI OVERDRIVE</span>
+              <div class="sparkle-track"><div class="sparkle-fill" id="sparkle-fill"></div></div>
+            </div>
+          </div>
+          <div class="hud-right">
+            <div class="stat-card">
+              <span class="stat-label">SCORE</span>
+              <span class="stat-val" id="hud-score">0</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-label">G COINS</span>
+              <span class="stat-val gold" id="hud-coins">0</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-label">BEST</span>
+              <span class="stat-val" id="hud-best">0</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Start / Pause / Game Over Overlay -->
+        <div class="overlay" id="overlay">
+          <div class="overlay-card" id="overlay-card">
+            <div class="badge" id="overlay-badge">GBIKE · 3-LANE WORLD TOUR</div>
+            <h2 id="overlay-title">Pelican Surfer</h2>
+            <p id="overlay-desc">
+              Ride your 4-color GBike across <strong>GBus shuttles, double-deckers, trams &amp; harbor ferries</strong>.
+              Tap Jump mid-air to <strong>flap &amp; fly</strong>, hit yellow ramps to surf roofs, duck under skybridges, and grab <strong>Gemini Sparkles</strong>!
+            </p>
+            <div class="overlay-stats" id="overlay-stats" hidden>
+              <div><span>Score</span><strong id="final-score">0</strong></div>
+              <div><span>G Coins</span><strong id="final-coins">0</strong></div>
+              <div><span>Distance</span><strong id="final-dist">0m</strong></div>
+              <div><span>Best</span><strong id="final-best">0</strong></div>
+            </div>
+            <div class="overlay-actions">
+              <button id="btn-play" class="primary-btn" type="button">Ride Now (Space)</button>
+            </div>
+            <div class="controls-mini">
+              <span><kbd>←</kbd><kbd>→</kbd> or <kbd>A</kbd><kbd>D</kbd> Lane</span>
+              <span><kbd>↑</kbd> / <kbd>Space</kbd> Jump &amp; Fly</span>
+              <span><kbd>↓</kbd> / <kbd>S</kbd> Duck &amp; Slam</span>
+              <span><kbd>Shift</kbd> Hover-GBike</span>
+              <span><kbd>B</kbd> Bell</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Rolling Credits Action Bar (End of the Earth) -->
+        <div class="credits-actions" id="credits-actions" hidden>
+          <button id="btn-credits-endless" class="primary-btn" type="button">Continue Endless</button>
+          <button id="btn-credits-restart" class="icon-btn credits-secondary" type="button">Play Again</button>
+        </div>
+      </div>
+    </main>
+
+    <!-- Tour Progress Bar (Sequential 12-Level Progression — No Skipping) -->
+    <section class="campus-bar" aria-label="World and Moonshots Tour progress">
+      <div class="campus-bar-header">
+        <span id="tour-progress-label"><strong>Level 1 / 12</strong> — Mountain View (450m to London)</span>
+        <span class="tour-hint">Complete all 12 levels in order to unlock the Rolling Credits Finale</span>
+      </div>
+      <div class="campus-pills" id="campus-pills"></div>
+    </section>
+  </div>
+
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>
